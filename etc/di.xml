@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Wubinworks\InjectHead\Api\InjectionsRepositoryInterface" type="Wubinworks\InjectHead\Model\InjectionsRepository"/>
+	<preference for="Wubinworks\InjectHead\Api\Data\InjectionsInterface" type="Wubinworks\InjectHead\Model\Injections"/>
+	<preference for="Wubinworks\InjectHead\Api\Data\InjectionsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Wubinworks\InjectHead\Model\ResourceModel\Injections\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">wubinworks_injecthead_injections</argument>
+			<argument name="resourceModel" xsi:type="string">Wubinworks\InjectHead\Model\ResourceModel\Injections\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="wubinworks_injecthead_injections_listing_data_source" xsi:type="string">Wubinworks\InjectHead\Model\ResourceModel\Injections\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

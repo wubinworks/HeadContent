@@ -1,0 +1,47 @@
+<?php
+/**
+ * Copyright © Wubinworks All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+namespace Wubinworks\InjectHead\Controller\Adminhtml\Injections;
+
+class Delete extends \Wubinworks\InjectHead\Controller\Adminhtml\Injections
+{
+
+    /**
+     * Delete action
+     *
+     * @return \Magento\Framework\Controller\ResultInterface
+     */
+    public function execute()
+    {
+        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        $resultRedirect = $this->resultRedirectFactory->create();
+        // check if we know what should be deleted
+        $id = $this->getRequest()->getParam('injections_id');
+        if ($id) {
+            try {
+                // init model and delete
+                $model = $this->_objectManager->create(\Wubinworks\InjectHead\Model\Injections::class);
+                $model->load($id);
+                $model->delete();
+                // display success message
+                $this->messageManager->addSuccessMessage(__('You deleted the Injections.'));
+                // go to grid
+                return $resultRedirect->setPath('*/*/');
+            } catch (\Exception $e) {
+                // display error message
+                $this->messageManager->addErrorMessage($e->getMessage());
+                // go back to edit form
+                return $resultRedirect->setPath('*/*/edit', ['injections_id' => $id]);
+            }
+        }
+        // display error message
+        $this->messageManager->addErrorMessage(__('We can\'t find a Injections to delete.'));
+        // go to grid
+        return $resultRedirect->setPath('*/*/');
+    }
+}
+

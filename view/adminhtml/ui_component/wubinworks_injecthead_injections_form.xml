@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">wubinworks_injecthead_injections_form.injections_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Wubinworks\InjectHead\Block\Adminhtml\Injections\Edit\BackButton"/>
+			<button name="delete" class="Wubinworks\InjectHead\Block\Adminhtml\Injections\Edit\DeleteButton"/>
+			<button name="save" class="Wubinworks\InjectHead\Block\Adminhtml\Injections\Edit\SaveButton"/>
+			<button name="save_and_continue" class="Wubinworks\InjectHead\Block\Adminhtml\Injections\Edit\SaveAndContinueButton"/>
+		</buttons>
+		<namespace>wubinworks_injecthead_injections_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>wubinworks_injecthead_injections_form.injections_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="injections_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="injections_form_data_source" class="Wubinworks\InjectHead\Model\Injections\DataProvider">
+			<settings>
+				<requestFieldName>injections_id</requestFieldName>
+				<primaryFieldName>injections_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field name="enabled" formElement="input" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Injections</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">enabled</label>
+				<dataScope>enabled</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="uri_pattern" formElement="textarea" sortOrder="30">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Injections</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">uri_pattern</label>
+				<dataScope>uri_pattern</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="content" formElement="textarea" sortOrder="40">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Injections</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">content</label>
+				<dataScope>content</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+	</fieldset>
+</form>

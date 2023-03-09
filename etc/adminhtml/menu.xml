@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Wubinworks::top_level" title="Wubinworks" module="Wubinworks_InjectHead" sortOrder="9999" resource="Magento_Backend::content"/>
+		<add id="Wubinworks_InjectHead::wubinworks_injecthead_injections" title="Injections" module="Wubinworks_InjectHead" sortOrder="9999" resource="Magento_Backend::content" parent="Wubinworks::top_level" action="wubinworks_injecthead/injections/index"/>
+	</menu>
+</config>
