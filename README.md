@@ -1,10 +1,10 @@
-# Wubinworks URIパータンで&lt;head&gt;に任意のscriptとcssを追加
+# Wubinworks URIパターンで&lt;head&gt;に任意のscriptとcssを追加
 
 ## 動作環境
  - Magento 2.4
 
 ## 主な機能
-バックエンド設定から、URIパータン(正規表現)指定によって、&lt;head&gt;に任意のscriptとcssが追加可能
+バックエンド設定から、URIパターン(正規表現)指定によって、&lt;head&gt;に任意のscriptとcssが追加可能
 
 ## インストール
 ### 手順
@@ -17,7 +17,7 @@
 
 ## 設定
  - ルール有効／無効の選択
- - URIパータン(正規表現)を入力。
+ - URIパターン(正規表現)を入力。
   - /か空のままにすると、すべてのページにマッチする
 
 ## 特徴／使用例
