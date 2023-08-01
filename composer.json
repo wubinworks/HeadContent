@@ -1,16 +1,34 @@
 {
     "name": "wubinworks/module-injecthead",
-    "description": "Inject any scripts and css to HTML <head> by URI pattern",
+    "description": "A Magento 2 module that injects scripts and css to HTML <head> element. Users can choose which page they want to inject by specifying conditions including URI pattern. This module makes use of magento cache and browser local storage to achieve best performance.",
     "type": "magento2-module",
     "license": "OSL-3.0",
-	"version": "0.0.2",
+	"version": "1.0.0",
     "authors": [
-        {
-            "name": "Wubinworks"
-        }
-    ],
+		{
+			"name": "Wubinworks",
+			"email": "wubinworks[at]outlook.com",
+			"homepage": "https://github.com/wubinworks/HeadContent",
+			"role": "Developer"
+		}
+	],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php": ">=7.3",
+		"composer/semver": "*",
+        "magento/framework": "*",
+		"magento/magento2-base": "~2.4.1",
+		"magento/module-backend": "*",
+		"magento/module-cms": "*",
+		"magento/module-config": "*",
+		"magento/module-customer": "*",
+		"magento/module-security": "*",
+		"magento/module-store": "*",
+		"magento/module-theme": "*",
+		"magento/module-translation": "*",
+		"magento/module-ui": "*",
+		"magento/module-webapi": "*"
+    },
     "autoload": {
         "files": [
             "registration.php"

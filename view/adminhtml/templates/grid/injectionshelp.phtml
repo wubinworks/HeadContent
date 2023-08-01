@@ -1,0 +1,65 @@
+<?php
+/**
+ * @var $block \Wubinworks\InjectHead\Block\Adminhtml\Grid\InjectionsHelp
+ *
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class="help-block">
+	<div class="left">
+		<div class="quick-tips">
+			<div>
+				<h4><?= __('URI pattern Regular Expression Quick Tips') ?>&nbsp;(<a class="wubinworks-external-link" href="<?= $block->helper->getProjectUrl('uri_pattern') ?>" target="_blank" rel="noopener noreferrer nofollow"><?= __('More help') ?></a>)</h4>
+				<p><?= __('Be aware of <a class="wubinworks-internal-link" href="%1" target="_blank">Store Code settings</a>. Below examples assume this setting is disabled. Include your store code in regex if this setting is enabled', $block->getUrl('adminhtml/system_config/edit/section/web', ['_fragment' => 'row_web_url_use_store'])) ?></p>
+				<p><?= __('Campaign products') ?>:&nbsp;<span class="code">^/awesome-product-sku102[1-9]\.html</span></p>
+				<p><?= __('Check membership') ?>:&nbsp;<span class="code">\?is_member=1</span></p>
+				<p><?= __('Match checkout page') ?>:&nbsp;<span class="code">^/checkout(/index)?(/index)?((\?.*)?$|/)</span></p>
+				<h4><?= __('When do I need to clear cache?') ?></h4>
+				<p><?= __('Modifying the date time setting closer to current time') ?></p>
+				<p><?= __('Rules may take effect only after a Cache Clear, depending on their condition settings') ?><a class="wubinworks-external-link" href="<?= $block->helper->getProjectUrl('cache_clear') ?>" target="_blank" rel="noopener noreferrer nofollow">&nbsp;<?= __('More details') ?></a></p>
+			</div>
+		</div>
+	</div>
+	<div class="right">
+		<div class="project-link">
+			<h4><?= __('Project on Github') ?></h4>
+			<div class="github-logo">
+			</div>
+			<div class="github-url">
+				<span>
+					<a class="wubinworks-external-link" href="<?= $block->helper->getProjectUrl() ?>" target="_blank" rel="noopener noreferrer nofollow"><?= $block->helper->getProjectUrl() ?></a>
+				</span>
+			</div>
+		</div>
+		<div class="system-info">
+			<table>
+				<tr>
+					<th><?= __('Extension Version') ?></th>
+					<th><?= __('Magento Version') ?></th> 
+					<th><?= __('DB System Timezone') ?></th>
+					<th><?= __('DB Timezone') ?></th>
+				</tr>
+				<tr>
+					<td><?= $block->helper->getModuleSetupVersion() ?></td>
+					<td><?= $block->helper->getMagentoVersion() ?></td> 
+					<td><?= $block->helper->getDbTimeZone('system_time_zone') ?></td>
+					<td><?= $block->helper->getDbTimeZone('time_zone') ?></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<script>
+	require([
+        'jquery',
+		'uiRegistry',
+		'uiElement',
+		'Magento_Ui/js/lib/view/utils/dom-observer',
+        'hljs'
+    ], function ($, uiRegistry, uiElement, $do, hljs) {
+		$do.get('.html_code', function(elem){
+            hljs.highlightAll();
+        });
+	});
+</script>

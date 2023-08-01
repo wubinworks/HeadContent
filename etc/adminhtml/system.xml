@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="wubinworks" translate="label" sortOrder="100" class="wubinworks-config-tab">
+			<label>Wubinworks</label>
+		</tab>
+		<section id="wubinworks_injecthead" sortOrder="10" showInWebsite="0" showInStore="0" showInDefault="1" translate="label">
+			<class>wubinworks_injecthead_section</class>
+			<label><![CDATA[&lt;head&gt;&#xA0;Content]]></label>
+			<tab>wubinworks</tab>
+			<resource>Wubinworks_InjectHead::config_wubinworks_injecthead</resource>
+			<group id="general" sortOrder="10" showInWebsite="0" showInStore="0" showInDefault="1" translate="label">
+				<attribute type="expanded">1</attribute>
+				<label>General</label>
+				<field id="important_notes" type="label" sortOrder="0" showInWebsite="1" showInStore="1" showInDefault="1" translate="label comment" canRestore="0">
+					<label>Important Notes</label>
+					<frontend_model>Wubinworks\InjectHead\Block\Adminhtml\System\Config\ImportantNotes</frontend_model>
+				</field>
+				<field id="enabled" type="select" sortOrder="10" showInWebsite="0" showInStore="0" showInDefault="1" translate="label comment" canRestore="1">
+					<label>Enabled</label>
+					<comment>Enable/Disable the entire extension</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="exclude_fullactionname" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Excluded Full Action Names</label>
+                    <backend_model>Wubinworks\InjectHead\Model\Config\Backend\ExcludeFullActionNames</backend_model>
+                    <comment><![CDATA[Exclude these Full Action Names<br />They can be separated by comma<br />This setting has higher priority than rules in the Head Content manager<br />Wildcard can be used]]></comment>
+                </field>
+				<field id="exclude_fullactionname_note" translate="label" type="note" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="0">
+                    <frontend_model>Wubinworks\InjectHead\Block\Adminhtml\System\Config\ExcludeFullActionNamesNote</frontend_model>
+                    <label>Full Action Names examples</label>
+                </field>
+				<!--<field id="noroute_behavior" type="select" sortOrder="35" translate="label comment" showInWebsite="0" showInStore="0" showInDefault="1" canRestore="1">
+					<label>NoRoute Behavior</label>
+					<comment>Inject on 404 page?</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>-->
+				<field id="duplication_multiplier" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Duplication Multiplier</label>
+                    <comment><![CDATA[Head Content manager row duplication<br />Range: 1-10<br />Set to 0 to disable]]></comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-0-10</validate>
+                </field>
+				<field id="block_cache_lifetime" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Block Cache Lifetime</label>
+                    <frontend_model>Wubinworks\InjectHead\Block\Adminhtml\System\Config\BlockCacheLifetime</frontend_model>
+					<validate>validate-empty-or-digits validate-digits validate-digits-range digits-range-0-</validate>
+                </field>
+				<field id="max_client_data_cache_lifetime" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Maximum Client Data Cache Lifetime</label>
+                    <frontend_model>Wubinworks\InjectHead\Block\Adminhtml\System\Config\MaxClientDataCacheLifetime</frontend_model>
+					<validate>required-entry validate-digits validate-digits-range digits-range-0-</validate>
+                </field>
+				<field id="version_number" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="0">
+                    <label>Version Number</label>
+                    <comment><![CDATA[Increase this number and clear cache to force browsers to update head content <strong>immediately</strong>]]></comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-2147483647</validate>
+                </field>
+				<field id="reverse_rewrite_rule_lookup" type="select" sortOrder="70" showInWebsite="0" showInStore="0" showInDefault="1" translate="label comment" canRestore="1">
+					<label>Reverse Rewrite Rule Lookup</label>
+					<comment>Planned feature. Not working currently</comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="debug_mode" type="select" sortOrder="200" showInWebsite="0" showInStore="0" showInDefault="1" translate="label comment" canRestore="1">
+					<label>Debug Mode</label>
+					<comment><![CDATA[<strong>Don't enable on production server!</strong>]]></comment>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+			<group id="contact" sortOrder="100" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+				<attribute type="expanded">1</attribute>
+				<label>Contact</label>
+				<field id="contact" translate="label" type="note" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="0">
+                    <frontend_model>Wubinworks\InjectHead\Block\Adminhtml\System\Config\Contact</frontend_model>
+                    <label></label>
+                </field>
+			</group>
+		</section>
+	</system>
+</config>

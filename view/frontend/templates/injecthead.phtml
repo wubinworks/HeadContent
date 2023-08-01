@@ -1,0 +1,39 @@
+<?php
+/**
+ * @var $block \Wubinworks\InjectHead\Block\InjectHead
+ */
+?>
+<?php if($block->helper->isEnabled()): ?>
+<div class="wubinworks_injecthead_section" data-bind="scope: 'injecthead_section'" style="display: none;">
+	<?php if($block->helper->getDebugMode()): ?>
+	<div class="debug_mode">
+		<p data-bind="text: 'debug'"></p>
+		<p><?//= /* @noEscape */ $block->getMaxLSValidPeriod() ?></p>
+		<p><?= /* @noEscape */ $block->getRequestUri() ?></p>
+		<p><?= /* @noEscape */ 'alias: ' . $block->getAlias() ?></p>
+		<p><?= /* @noEscape */ 'pathinfo: ' . $block->getPathInfo() ?></p>
+		<p><?= /* @noEscape */ 'requeststring: ' . $block->getRequestString() ?></p>
+		<p><?= /* @noEscape */ 'canonical: ' . $block->getCanonicalUri() ?></p>
+		<p><?= /* @noEscape */ $block->getRefererFullActionName() ?></p>
+	</div>
+	<?php endif; ?>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Wubinworks_InjectHead/js/customer-data": {
+                "sectionLoadUrl": "<?= $block->escapeJs($block->getCustomerDataUrl('rest/V1/wubinworks-injectheaddata')) ?>",
+				"sectionName": "injecthead",
+				"sectionNames": <?= /* @noEscape */ $this->helper(\Magento\Framework\Json\Helper\Data::class)
+                    ->jsonEncode($block->getSectionNames()) ?>,
+				"referer": "<?= /* @noEscape */ $block->base64Encode($block->getRequestUri()) ?>",
+				"refererFullActionName": "<?= /* @noEscape */ $block->base64Encode($block->getRefererFullActionName()) ?>",
+				"maxClientDataCacheLifetime": <?= $block->escapeJs($block->helper->getMaxClientDataCacheLifetime()) ?>,
+				"versionNumber": <?= $block->escapeJs($block->helper->getVersionNumber()) ?>,
+				"maxClientUnsuccessDataCacheLifetime": 300,
+				"identity": "<?= $block->escapeJs($block->getIdentities()[0]) ?>"
+            }
+        }
+    }
+</script>
+<?php endif; ?>

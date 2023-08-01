@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Wubinworks\InjectHead\Block\InjectHead">
+    	<arguments>
+        	<argument name="sectionNames" xsi:type="array">
+            	<item name="injecthead" xsi:type="string">injecthead</item>
+        	</argument>
+    	</arguments>
+	</type>
+	<!--<type name="Magento\Customer\CustomerData\Customer">
+        <plugin name="wubinworks_injecthead_get_additional_section_data" type="Wubinworks\InjectHead\Plugin\GetAdditionalSectionDataPlugin" />
+    </type>-->
+	<type name="Magento\Framework\Session\SessionManagerInterface">
+        <plugin name="wubinworks_injecthead_session_start" type="Wubinworks\InjectHead\Plugin\SessionStartPlugin" />
+    </type>
+	<virtualType name="Wubinworks\InjectHead\Api\SearchCriteria\CollectionProcessor\InjectionsFilterProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
+        <arguments>
+			<argument name="customFilters" xsi:type="array">
+				<item name="uri_pattern" xsi:type="object">
+					Wubinworks\InjectHead\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor\ReverseRegexpFilter
+				</item>
+            	<item name="customer_groups" xsi:type="object">
+					Wubinworks\InjectHead\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor\NotFindInSetFilter
+				</item>
+			</argument>
+        </arguments>
+    </virtualType>
+</config>

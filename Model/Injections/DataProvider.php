@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Wubinworks All rights reserved.
+ * Copyright © Wubinworks. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
@@ -13,7 +13,6 @@ use Wubinworks\InjectHead\Model\ResourceModel\Injections\CollectionFactory;
 
 class DataProvider extends AbstractDataProvider
 {
-
     /**
      * @var DataPersistorInterface
      */
@@ -23,13 +22,15 @@ class DataProvider extends AbstractDataProvider
      * @var array
      */
     protected $loadedData;
+
     /**
      * @inheritDoc
      */
     protected $collection;
 
-
     /**
+	 * Constructor
+	 *
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
@@ -65,15 +66,14 @@ class DataProvider extends AbstractDataProvider
             $this->loadedData[$model->getId()] = $model->getData();
         }
         $data = $this->dataPersistor->get('wubinworks_injecthead_injections');
-        
+
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
             $this->dataPersistor->clear('wubinworks_injecthead_injections');
         }
-        
+
         return $this->loadedData;
     }
 }
-

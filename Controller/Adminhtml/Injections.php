@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Wubinworks All rights reserved.
+ * Copyright © Wubinworks. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
@@ -9,8 +9,18 @@ namespace Wubinworks\InjectHead\Controller\Adminhtml;
 
 abstract class Injections extends \Magento\Backend\App\Action
 {
-
-    const ADMIN_RESOURCE = 'Wubinworks_InjectHead::top_level';
+    public const ADMIN_RESOURCE = 'Wubinworks::top_level';
+	
+	/**
+     * Navigation array
+     * @var string[]
+     */
+	protected $navArr;
+	
+	/**
+     * Core registry
+     * @var \Magento\Framework\Registry
+     */
     protected $_coreRegistry;
 
     /**
@@ -21,10 +31,26 @@ abstract class Injections extends \Magento\Backend\App\Action
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry
     ) {
+		$this->navArr = [__($this->extractVendorName(get_class($this)))];
+		$this->navArr[] = __('Head Content');
         $this->_coreRegistry = $coreRegistry;
         parent::__construct($context);
     }
 
+	/**
+     * Extract vendor name from specified block class name
+     *
+     * @param string $className
+     * @return string
+     */
+    public static function extractVendorName($className)
+    {
+        if (!$className) {
+            return '';
+        }
+        return explode('\\', $className)[0];
+    }
+	
     /**
      * Init page
      *
@@ -33,10 +59,11 @@ abstract class Injections extends \Magento\Backend\App\Action
      */
     public function initPage($resultPage)
     {
-        $resultPage->setActiveMenu(self::ADMIN_RESOURCE)
-            ->addBreadcrumb(__('Wubinworks'), __('Wubinworks'))
-            ->addBreadcrumb(__('Injections'), __('Injections'));
+        $resultPage->setActiveMenu(self::ADMIN_RESOURCE);
+		foreach($this->navArr as $nav){
+			$resultPage->addBreadcrumb($nav, $nav);
+			$resultPage->getConfig()->getTitle()->prepend($nav);
+		}
         return $resultPage;
     }
 }
-

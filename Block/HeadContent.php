@@ -1,86 +1,96 @@
 <?php
 /**
- * Copyright © Wubinworks All rights reserved.
+ * Copyright © Wubinworks. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
 
 namespace Wubinworks\InjectHead\Block;
 
-use Wubinworks\InjectHead\Api\Data\InjectionsInterface;
+//use Magento\Framework\App\RouterListInterface;
+use Magento\Framework\App\ResponseInterface;
 use Wubinworks\InjectHead\Api\InjectionsRepositoryInterface;
-use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\Api\SortOrderBuilder;
 
-class HeadContent extends \Magento\Framework\View\Element\Template
+class HeadContent extends \Wubinworks\InjectHead\Block\FrontendBlock
 {
+    public const NO_ROUTE_FULL_ACTION_NAME = 'cms/noroute/index';
+
+    /**
+     * Router list interface
+     * @var RouterListInterface
+     */
+    //protected $routerList;
+
+    /**
+     * Response interface
+     * @var ResponseInterface
+     */
+    protected $response;
+
+    /**
+     * Injections
+     * @var \Wubinworks\InjectHead\Api\Data\InjectionsInterface;
+     */
+    protected $injections;
+
 	/**
      * Injections repository
      * @var InjectionsRepositoryInterface
      */
-    private $injectionsRepository;
-
-    /**
-     * SearchCriteria builder
-     * @var SearchCriteriaBuilder
-     */
-    private $searchCriteriaBuilder;
-
-    /**
-     * SortOrder builder
-     * @var SortOrderBuilder
-     */
-    private $sortOrderBuilder;
+    protected $injectionsRepository;
 	
     /**
      * Constructor
      *
-	 * @param InjectionsRepositoryInterface $injectionsRepository
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
-     * @param SortOrderBuilder $sortOrderBuilder
-     * @param \Magento\Framework\View\Element\Template\Context  $context
+     * @param \Magento\Framework\App\ResponseInterface $response
+     * @param \Wubinworks\InjectHead\Api\InjectionsRepositoryInterface $injectionsRepository
+     * @param \Magento\Framework\View\Element\Template\Context $context
      * @param array $data
      */
     public function __construct(
+        //RouterListInterface $routerList,
+        ResponseInterface $response,
 		InjectionsRepositoryInterface $injectionsRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-        SortOrderBuilder $sortOrderBuilder,
         \Magento\Framework\View\Element\Template\Context $context,
         array $data = []
     ) {
+        //$this->routerList = $routerList;
+        $this->response = $response;
 		$this->injectionsRepository = $injectionsRepository;
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->sortOrderBuilder = $sortOrderBuilder;
         parent::__construct($context, $data);
+    }
+
+	/**
+     * @return int
+     */
+    protected function _getCacheLifetime()
+    {
+        return $this->helper->getBlockCacheLifetime() ?? parent::_getCacheLifetime();
+    }
+	
+    /**
+     * Not used. Debug purpose only
+     * @param string|null $pattern
+     *
+     * @return boolean
+     */
+    protected function isUriMatched($pattern)
+    {
+        if(is_null($pattern) || $pattern === '' || $pattern === '/') {
+            return true;
+        }
+        return preg_match('#' . $pattern . '#', $this->getRequest()->getRequestUri());
     }
 
     /**
      * @return string
      */
-	public function _toHtml()
+    protected function _toHtml()
     {
-		$this->searchCriteriaBuilder
-            ->addFilter('enabled', 1, 'eq');
-        $sortOrder = $this->sortOrderBuilder
-            ->setField('injections_id')
-            ->setDirection(\Magento\Framework\Api\SortOrder::SORT_ASC)
-            ->create();
-        $this->searchCriteriaBuilder->addSortOrder($sortOrder);
-		/*
-        $this->searchCriteriaBuilder
-            ->setPageSize(5)
-            ->setCurrentPage(1);
-		*/
-        $searchCriteria = $this->searchCriteriaBuilder->create();
-        $injections = $this->injectionsRepository
-            ->getList($searchCriteria)
-            ->getItems();
-		$headContent = '';
-		foreach($injections as $injection){
-			$headContent .= $injection->getData('content');
-		}
-		return $headContent;
-        //return '<script>console.log("qwerty");</script>';
+        $html = $this->injectionsRepository->getPublicHeadHtml(
+            $this->getRequest()->getRequestUri(),
+            $this->getRequest()->getFullActionName('/')
+        );
+        return $this->injectionsRepository->getFilteredHeadHtml($html);
     }
 }
-

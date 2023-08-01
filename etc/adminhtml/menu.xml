@@ -1,7 +1,40 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
 	<menu>
-		<add id="Wubinworks::top_level" title="Wubinworks" module="Wubinworks_InjectHead" sortOrder="9999" resource="Magento_Backend::content"/>
-		<add id="Wubinworks_InjectHead::wubinworks_injecthead_injections" title="Injections" module="Wubinworks_InjectHead" sortOrder="9999" resource="Magento_Backend::content" parent="Wubinworks::top_level" action="wubinworks_injecthead/injections/index"/>
+		<add id="Wubinworks::top_level/MERGE/injecthead"
+			title="Wubinworks" module="Wubinworks_InjectHead" sortOrder="100"
+			translate="title"
+			resource="Magento_Backend::content"/>
+		<add id="Wubinworks_InjectHead::injecthead_section"
+			title="&amp;lt;head&amp;gt;&amp;#xA0;Content" module="Wubinworks_InjectHead" sortOrder="10"
+			translate="title"
+			parent="Wubinworks::top_level"
+			resource="Wubinworks_InjectHead::wubinworks_injecthead_section"/>
+		<add id="Wubinworks_InjectHead::injecthead_injections"
+			title="Head Content Manager" module="Wubinworks_InjectHead" sortOrder="10"
+			translate="title"
+			resource="Wubinworks_InjectHead::injecthead_injections"
+			parent="Wubinworks_InjectHead::injecthead_section"
+			action="wubinworks_injecthead/injections/index"
+			dependsOnConfig="wubinworks_injecthead/general/enabled"/>
+		<add id="Wubinworks_InjectHead::injecthead_advancedmassaction"
+			title="Advanced Mass Action" module="Wubinworks_InjectHead" sortOrder="20"
+			translate="title"
+			resource="Wubinworks_InjectHead::injecthead_advancedmassaction"
+			parent="Wubinworks_InjectHead::injecthead_section"
+			action="wubinworks_injecthead/injections/advancedMassAction"
+			dependsOnConfig="wubinworks_injecthead/general/enabled"/>
+		<add id="Wubinworks_InjectHead::config_injecthead"
+			title="Configuration" module="Wubinworks_InjectHead" sortOrder="50"
+			translate="title"
+			resource="Wubinworks_InjectHead::config_injecthead"
+			parent="Wubinworks_InjectHead::injecthead_section"
+			action="adminhtml/system_config/edit/section/wubinworks_injecthead"/>
 	</menu>
 </config>

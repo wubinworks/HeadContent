@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<wubinworks_injecthead>
+			<general>
+				<enabled>1</enabled>
+				<exclude_fullactionname>cms/noroute/index</exclude_fullactionname>
+				<!--<noroute_behavior>0</noroute_behavior>-->
+				<duplication_multiplier>1</duplication_multiplier>
+				<block_cache_lifetime>86400</block_cache_lifetime>
+				<max_client_data_cache_lifetime>7200</max_client_data_cache_lifetime>
+				<version_number>1</version_number>
+				<reverse_rewrite_rule_lookup>0</reverse_rewrite_rule_lookup>
+				<debug_mode>0</debug_mode>
+			</general>
+		</wubinworks_injecthead>
+	</default>
+</config>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Wubinworks All rights reserved.
+ * Copyright © Wubinworks. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
@@ -9,7 +9,10 @@ namespace Wubinworks\InjectHead\Controller\Adminhtml\Injections;
 
 class InlineEdit extends \Magento\Backend\App\Action
 {
-
+	/**
+	 * Result json factory
+	 * @var \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+	 */
     protected $jsonFactory;
 
     /**
@@ -35,11 +38,11 @@ class InlineEdit extends \Magento\Backend\App\Action
         $resultJson = $this->jsonFactory->create();
         $error = false;
         $messages = [];
-        
+
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
             if (!count($postItems)) {
-                $messages[] = __('Please correct the data sent.');
+                $messages[] = __('Please select at least one rule');
                 $error = true;
             } else {
                 foreach (array_keys($postItems) as $modelid) {
@@ -49,17 +52,16 @@ class InlineEdit extends \Magento\Backend\App\Action
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();
                     } catch (\Exception $e) {
-                        $messages[] = "[Injections ID: {$modelid}]  {$e->getMessage()}";
+                        $messages[] = "[" . __('Rule') . " ID: {$modelid}]  {$e->getMessage()}";
                         $error = true;
                     }
                 }
             }
         }
-        
+
         return $resultJson->setData([
             'messages' => $messages,
             'error' => $error
         ]);
     }
 }
-

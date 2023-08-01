@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Wubinworks All rights reserved.
+ * Copyright © Wubinworks. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
@@ -9,7 +9,6 @@ namespace Wubinworks\InjectHead\Controller\Adminhtml\Injections;
 
 class Delete extends \Wubinworks\InjectHead\Controller\Adminhtml\Injections
 {
-
     /**
      * Delete action
      *
@@ -28,7 +27,7 @@ class Delete extends \Wubinworks\InjectHead\Controller\Adminhtml\Injections
                 $model->load($id);
                 $model->delete();
                 // display success message
-                $this->messageManager->addSuccessMessage(__('You deleted the Injections.'));
+                $this->messageManager->addSuccessMessage(__('You successfully deleted the rule'));
                 // go to grid
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
@@ -39,9 +38,8 @@ class Delete extends \Wubinworks\InjectHead\Controller\Adminhtml\Injections
             }
         }
         // display error message
-        $this->messageManager->addErrorMessage(__('We can\'t find a Injections to delete.'));
+        $this->messageManager->addErrorMessage(__('We can\'t find a rule to delete'));
         // go to grid
         return $resultRedirect->setPath('*/*/');
     }
 }
-

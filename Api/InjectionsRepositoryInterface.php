@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Wubinworks All rights reserved.
+ * Copyright © Wubinworks. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
@@ -11,7 +11,6 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface InjectionsRepositoryInterface
 {
-
     /**
      * Save Injections
      * @param \Wubinworks\InjectHead\Api\Data\InjectionsInterface $injections
@@ -59,4 +58,3 @@ interface InjectionsRepositoryInterface
      */
     public function deleteById($injectionsId);
 }
-

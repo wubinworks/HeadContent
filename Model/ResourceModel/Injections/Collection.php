@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Wubinworks All rights reserved.
+ * Copyright © Wubinworks. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
@@ -11,7 +11,6 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 class Collection extends AbstractCollection
 {
-
     /**
      * @inheritDoc
      */
@@ -22,10 +21,10 @@ class Collection extends AbstractCollection
      */
     protected function _construct()
     {
+		$this->_idFieldName = \Wubinworks\InjectHead\Model\ResourceModel\Injections::PRIMARY_KEY;
         $this->_init(
             \Wubinworks\InjectHead\Model\Injections::class,
             \Wubinworks\InjectHead\Model\ResourceModel\Injections::class
         );
     }
 }
-

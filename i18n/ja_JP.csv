@@ -1,1 +1,166 @@
-"string","stringtranslated"
+"/**","/**"
+" * Copyright © Wubinworks. All rights reserved."," * 著作権 © Wubinworks。 Wubinworksは本著作物に対するすべての権利を留保する"
+" * See COPYING.txt for license details."," * 使用許諾(ライセンス)については、COPYING.txtを参照してください。"
+" */"," */"
+"###MENU###","",module,Wubinworks_InjectHead
+"Magento Admin","Magento管理者",module,Wubinworks_InjectHead
+"&lt;head&gt;&#xA0;Content","&lt;head&gt;コンテンツ",module,Wubinworks_InjectHead
+"Head Content Manager","Headコンテンツマネージャ",module,Wubinworks_InjectHead
+"Advanced Mass Action","高度な一括操作",module,Wubinworks_InjectHead
+"Configuration","設定",module,Wubinworks_InjectHead
+"Settings","設定",module,Wubinworks_InjectHead
+"###CONTROLLER###","",module,Wubinworks_InjectHead
+"Rule","ルール",module,Wubinworks_InjectHead
+"Edit Rule","ルール編集",module,Wubinworks_InjectHead
+"New Rule","新規ルール",module,Wubinworks_InjectHead
+"This Rule no longer exists.","このルールはもう存在しません",module,Wubinworks_InjectHead
+"You saved the Rule","ルール保存成功",module,Wubinworks_InjectHead
+"This rule was failed to save for unknown reasons, please check the exception log","不明な原因で、保存に失敗しました。Excepitionログをご検証ください",module,Wubinworks_InjectHead
+"You successfully deleted the rule","ルール削除成功",module,Wubinworks_InjectHead
+"We can't find a rule to delete","指定のルールは見つかりません",module,Wubinworks_InjectHead
+"Head Content Advanced Mass Action","Headコンテンツルールの高度な一括操作",module,Wubinworks_InjectHead
+"Head Content","Headコンテンツ",module,Wubinworks_InjectHead
+"This rule no longer exists","このルールはもう存在しません",module,Wubinworks_InjectHead
+"Something went wrong while saving the rule","不明な原因で、保存に失敗しました",module,Wubinworks_InjectHead
+"Rule "%1" duplicated %2 time(s) successfully","ルール%1が%2回複製されました",module,Wubinworks_InjectHead
+"Parameters Missing or Incorrect","パラメータが不足か間違っています",module,Wubinworks_InjectHead
+"Please select at least one rule","最低一つのルールを選択してください",module,Wubinworks_InjectHead
+"###BUTTON###","",module,Wubinworks_InjectHead
+"Add New Rule","新規ルール作成",module,Wubinworks_InjectHead
+"Cache Management","キャッシュ管理",module,Wubinworks_InjectHead
+"Save","保存",module,Wubinworks_InjectHead
+"Save and Continue Edit","保存＆編集を続ける",module,Wubinworks_InjectHead
+"Back","戻る",module,Wubinworks_InjectHead
+"Reset","リセット",module,Wubinworks_InjectHead
+"Edit","編集",module,Wubinworks_InjectHead
+"Delete","削除",module,Wubinworks_InjectHead
+"Are you sure you want to do this?","本当に実行してもよろしいでしょうか？",module,Wubinworks_InjectHead
+"###TEMPLATES&BLOCK###","",module,Wubinworks_InjectHead
+"URI pattern Regular Expression Quick Tips","URIパターン用正規表現のヒント",module,Wubinworks_InjectHead
+"Be aware of <a class=""wubinworks-internal-link"" href=""%1"" target=""_blank"">Store Code settings</a>. Below examples assume this setting is disabled. Include your store code in regex if this setting is enabled","<a class=""wubinworks-internal-link"" href=""%1"" target=""_blank"">ストアコード設定</a>にご注意❗️以下の例はストアコード設定がオフと仮定します。ストアコード設定がオンでしたら、正規表現にストアコードも入れてください",module,Wubinworks_InjectHead
+"Campaign products","キャンペーン用商品",module,Wubinworks_InjectHead
+"Check membership","メンバーシップ判定",module,Wubinworks_InjectHead
+"Match checkout page","チェックアウトページを特定",module,Wubinworks_InjectHead
+"When do I need to clear cache?","キャッシュクリアが必要な時は？",module,Wubinworks_InjectHead
+"Modifying the date time setting closer to current time","設定した時刻を繰り上げた後",module,Wubinworks_InjectHead
+"Rules may take effect only after a Cache Clear, depending on their condition settings","設定したルールの条件によって、反映には、キャッシュクリアを必要とする場合があります",module,Wubinworks_InjectHead
+"More details","詳細",module,Wubinworks_InjectHead
+"More help","詳細なヘルプ",module,Wubinworks_InjectHead
+"Project on Github","Github上の本プロジェクト",module,Wubinworks_InjectHead
+"Extension Version","エクステンションバージョン",module,Wubinworks_InjectHead
+"Magento Version","Magentoバージョン",module,Wubinworks_InjectHead
+"DB System Timezone","データベースシステムタイムゾーン",module,Wubinworks_InjectHead
+"DB Timezone","データベースタイムゾーン",module,Wubinworks_InjectHead
+"Content Example","コンテンツの例",module,Wubinworks_InjectHead
+"WARNING: Magento Version %1 is not compatible with Wubinworks_InjectHead. Main functions have been disabled automatically","警告: Magentoバージョン %1 はWubinworks_InjectHeadの動作対象外です。主要機能は自動的に無効化されています",module,Wubinworks_InjectHead
+"More details <a class=""wubinworks-external-link"" href=""%1"" target=""_blank"" rel=""noopener noreferrer"">here</a>","詳しくは<a class=""wubinworks-external-link"" href=""%1"" target=""_blank"" rel=""noopener noreferrer"">こちら</a>",module,Wubinworks_InjectHead
+"###UI###","",module,Wubinworks_InjectHead
+"General Information","全般",module,Wubinworks_InjectHead
+"General","全般",module,Wubinworks_InjectHead
+"Match Mode","マッチング方法",module,Wubinworks_InjectHead
+"Match URI in Regular Expression","正規表現でURIをマッチ",module,Wubinworks_InjectHead
+"Match Full Action Name","Full Action Nameでマッチ",module,Wubinworks_InjectHead
+"Reserved","保留中",module,Wubinworks_InjectHead
+"Name","名前",module,Wubinworks_InjectHead
+"Store View","ストアビュー",module,Wubinworks_InjectHead
+"What is this?","これは❓",module,Wubinworks_InjectHead
+"Customer Groups","顧客グループ",module,Wubinworks_InjectHead
+"ALL Customer Groups","すべての顧客グループ",module,Wubinworks_InjectHead
+"URI Pattern","URIパターン",module,Wubinworks_InjectHead
+"Start DateTime","開始時刻",module,Wubinworks_InjectHead
+"End DateTime","終了時刻",module,Wubinworks_InjectHead
+"Content","コンテンツ",module,Wubinworks_InjectHead
+"Contents","コンテンツ",module,Wubinworks_InjectHead
+"Update At","最終更新時刻",module,Wubinworks_InjectHead
+"Action","操作",module,Wubinworks_InjectHead
+"Actions","操作",module,Wubinworks_InjectHead
+"Select","選択",module,Wubinworks_InjectHead
+"Select...","選択...",module,Wubinworks_InjectHead
+"Duplicate","複製",module,Wubinworks_InjectHead
+"We couldn't find any records.","何もありません（≧∇≦）",module,Wubinworks_InjectHead
+"Search by keyword","キーワードで検索",module,Wubinworks_InjectHead
+"records found","個のレコードを見つけました",module,Wubinworks_InjectHead
+"per page","個/ページ",module,Wubinworks_InjectHead
+"Filters","検索&絞り",module,Wubinworks_InjectHead
+"Default View","既定のビュー",module,Wubinworks_InjectHead
+"Options","オプション",module,Wubinworks_InjectHead
+"options","オプション",module,Wubinworks_InjectHead
+"Selected","選択済み",module,Wubinworks_InjectHead
+"selected","選択済み",module,Wubinworks_InjectHead
+"of "," / ",module,Wubinworks_InjectHead
+"Something went wrong.","何らかの問題が発生しました。",module,Wubinworks_InjectHead
+"Select All","すべて選択",module,Wubinworks_InjectHead
+"Deselect All","すべての選択を外す",module,Wubinworks_InjectHead
+"Select All on This Page","このページのすべてを選択",module,Wubinworks_InjectHead
+"Deselect All on This Page","このページのすべての選択を外す",module,Wubinworks_InjectHead
+"Go to Details Page","詳細ページへ移動",module,Wubinworks_InjectHead
+"New View","新しいビュー",module,Wubinworks_InjectHead
+"Save View As...","名前をつけて、ビューを保存",module,Wubinworks_InjectHead
+"Columns","列",module,Wubinworks_InjectHead
+"${ $.visible } out of ${ $.total } visible","${ $.visible } / ${ $.total } 表示中",module,Wubinworks_InjectHead
+"Store View(Partial Match)","ストアビュー(部分一致)",module,Wubinworks_InjectHead
+"Customer Groups(Partial Match)","顧客グループ(部分一致)",module,Wubinworks_InjectHead
+"Apply Filters","検索する",module,Wubinworks_InjectHead
+"All Store Views","すべてのストアビュー",module,Wubinworks_InjectHead
+"from","開始",module,Wubinworks_InjectHead
+"to","終了",module,Wubinworks_InjectHead
+"Time","時刻",module,Wubinworks_InjectHead
+"Hour","時",module,Wubinworks_InjectHead
+"Minute","分",module,Wubinworks_InjectHead
+"Second","秒",module,Wubinworks_InjectHead
+"Go Today","今日",module,Wubinworks_InjectHead
+"Close","閉じる",module,Wubinworks_InjectHead
+"Done","完了",module,Wubinworks_InjectHead
+"If not set, this will be treated as INFINITESIMAL<br />Make sure your Web Sever timezone and <strong>Database timezone</strong> are correct","空欄にすると、無限小と見なします<br />Webサーバと<strong>データベース</strong>のタイムゾーンが正しいかご注意ください",module,Wubinworks_InjectHead
+"If not set, this will be treated as INFINITY<br />Make sure your Web Sever timezone and <strong>Database timezone</strong> are correct","空欄にすると、無限大と見なします<br />Webサーバと<strong>データベース</strong>のタイムゾーンが正しいかご注意ください",module,Wubinworks_InjectHead
+"<!-- Comment here, your code must be ERROR-FREE -->","<!-- ここにコメントできます。コードはミスなしである必要があります -->",module,Wubinworks_InjectHead
+"@Only script, style, link and meta tag are recognized","@script, style, linkとmetaタグだけを識別",module,Wubinworks_InjectHead
+"@Comments will not be injected","@コメントは&lt;head&gt;に注入しません",module,Wubinworks_InjectHead
+"@Your code must be ERROR-FREE","@コードはミスなしである必要があります",module,Wubinworks_InjectHead
+"You can also comment like this","このようにコメントもできます",module,Wubinworks_InjectHead
+"###CONFIG###","",module,Wubinworks_InjectHead
+"Scope:","スコープ:",module,Wubinworks_InjectHead
+"Default Config","既定の設定",module,Wubinworks_InjectHead
+"Save Config","設定を保存",module,Wubinworks_InjectHead
+"Use system value","システム既定値を使用",module,Wubinworks_InjectHead
+"Important Notes","ご注意",module,Wubinworks_InjectHead
+"You need to <a class=""wubinworks-internal-link"" href=""%1"" target=""_blank"">Clear Cache</a> for these settings to take effect!","以下の設定を変更した場合、<a class=""wubinworks-internal-link"" href=""%1"" target=""_blank"">キャッシュをクリア</a>する必要があります",module,Wubinworks_InjectHead
+"Enabled","有効",module,Wubinworks_InjectHead
+"Enable/Disable the entire extension","エクステンション全体有効／無効",module,Wubinworks_InjectHead
+"Excluded Full Action Names","除外されたFull Action Name",module,Wubinworks_InjectHead
+"Exclude these Full Action Names<br />They can be separated by comma<br />This setting has higher priority than rules in the Head Content manager<br />Wildcard can be used","これらのFull Action Nameを除外<br />カンマで区切ります<br />Headコンテンツマネージャのルールより優先<br />ワイルドカードが使えます",module,Wubinworks_InjectHead
+"Full Action Names examples","Full Action Nameの例",module,Wubinworks_InjectHead
+"More <a class=""wubinworks-external-link"" href=""%1"" target=""_blank"" rel=""noopener noreferrer"">here</a>","さらに詳しくは<a class=""wubinworks-external-link"" href=""%1"" target=""_blank"" rel=""noopener noreferrer"">こちら</a>",module,Wubinworks_InjectHead
+"Duplication Multiplier","ルール複製回数",module,Wubinworks_InjectHead
+"Head Content manager row duplication<br />Range: 1-10<br />Set to 0 to disable","Headコンテンツマネージャの行を複製<br />範囲: 1-10<br />0に設定すると、無効にできます",module,Wubinworks_InjectHead
+"Block Cache Lifetime","Block Cache Lifetime",module,Wubinworks_InjectHead
+"In seconds<br />Leave it empty to use <a class=""wubinworks-internal-link"" href=""%1"" target=""_blank"">`Configuration->Advanced settings->System->Full Page Cache->TTL`</a> value<br />Set to 0 to disable Block HTML Cache","単位: 秒<br />空欄にすると<a class=""wubinworks-internal-link"" href=""%1"" target=""_blank"">`設定->高度な設定->システム->フルページキャッシュ->TTL`</a>を使用<br />0にするとBlock HTML Cacheが無効になります",module,Wubinworks_InjectHead
+"Maximum Client Data Cache Lifetime","クライアントデータCache Lifetime最大値",module,Wubinworks_InjectHead
+"In seconds<br />The maximum duration for <strong>browsers</strong> to cache head content<br />Set to 0 to let browsers not cache(Performance impact, not recommanded)<br /><a class=""wubinworks-internal-link"" href=""%1"" target=""_blank"">`Configuration->General->Web->Default Cookie setting->Cookie Lifetime`</a> must be longer than this value","単位: 秒<br /><strong>ブラウザ</strong>がheadコンテンツをキャッシュする最大期間<br />0にするとブラウザがキャッシュしません(パフォーマンスに良くないので、非推奨)<br /><a class=""wubinworks-internal-link"" href=""%1"" target=""_blank"">`設定->全般->ウェブ->デフォルトのCookie設定->Cookie有効期限`</a>はこの設定より長い必要があります",module,Wubinworks_InjectHead
+"Version Number","バージョンナンバー",module,Wubinworks_InjectHead
+"Increase this number and clear cache to force browsers to update head content <strong>immediately</strong>","ブラウザに強制的にHeadコンテンツを<strong>すぐに</strong>更新させたい場合はこの値を増やしてから、キャッシュクリアしてください",module,Wubinworks_InjectHead
+"Reverse Rewrite Rule Lookup","Rewriteルール逆引き",module,Wubinworks_InjectHead
+"Planned feature. Not working currently","今後提供する機能。当面は動作しません",module,Wubinworks_InjectHead
+"Debug Mode","デバッグモード",module,Wubinworks_InjectHead
+"<strong>Don't enable on production server!</strong>","<strong>プロダクション環境では有効にしないでください❗️</strong>",module,Wubinworks_InjectHead
+"Contact","ご連絡",module,Wubinworks_InjectHead
+"Report issues and bugs <a class=""wubinworks-external-link"" href=""%1"" target=""_blank"" rel=""noopener noreferrer"">here</a>","問題やバグのご報告は<a class=""wubinworks-external-link"" href=""%1"" target=""_blank"" rel=""noopener noreferrer"">こちら</a>",module,Wubinworks_InjectHead
+"Our team is offering Magento custom development service. If you require any kind of store customization, tailor-made extensions or EC technical consulting service, please feel free to reach out to us via the email below","Magentoのカスタマイズ・開発、専用エクステンション(オーダーメイド)作成、ECサイト構築・コンサルティングなどの依頼を承っております。ご用命の際には、お気軽に下記のメールアドレスまでご連絡ください",module,Wubinworks_InjectHead
+"Supported languages","対応言語",module,Wubinworks_InjectHead
+"English","英語",module,Wubinworks_InjectHead
+"Japanese","日本語",module,Wubinworks_InjectHead
+"Copy Email","メールアドレスをコピー",module,Wubinworks_InjectHead
+"Email address has been copied to clipboard!","メールアドレスをクリップボードにコピーしました❗️",module,Wubinworks_InjectHead
+"Like this extension?","❤️このエクステンションが好き？",module,Wubinworks_InjectHead
+"Support Author","支援",module,Wubinworks_InjectHead
+"<a class=""wubinworks-external-link"" href=""%1"" target=""_blank"" rel=""noopener noreferrer"">Privacy Policy</a>","<a class=""wubinworks-external-link"" href=""%1"" target=""_blank"" rel=""noopener noreferrer"">プライバシーポリシー</a>",module,Wubinworks_InjectHead
+"[Your Name/Company Name]","【お名前／会社名】",module,Wubinworks_InjectHead
+"Custom Development","開発・カスタマイズ",module,Wubinworks_InjectHead
+"[Your decision whether to provide the information below to us and you can remove any parts you do not want to provide. Howerver, we suggest you to include them for an effective inquiry. The content of this email will not be shared to any third parties. You can also confirm our Privacy Policy]","【下記の情報提供は完全任意で、また、ご提供なさりたくない部分を削除しても構いません。ただし、ご相談や、お問い合わせがよりスムーズに進むため、下記の情報をご提供頂ければ幸いです。このメールの内容は第三者に公開することはございません。これに関するご懸念点がございましたら、Wubinworksのプライバシーポリシーをご確認ください】",module,Wubinworks_InjectHead
+"Store Name","店舗名",module,Wubinworks_InjectHead
+"Country of Store","所在国",module,Wubinworks_InjectHead
+"Wubinworks_InjectHead Version","Wubinworks_InjectHeadバージョン",module,Wubinworks_InjectHead
+"###PLUGIN###","",module,Wubinworks_InjectHead
+"%1 Incompatible!","%1は動作対象外‼️",module,Wubinworks_InjectHead
+"###JS###","",module,Wubinworks_InjectHead
+"###MISC###","",module,Wubinworks_InjectHead

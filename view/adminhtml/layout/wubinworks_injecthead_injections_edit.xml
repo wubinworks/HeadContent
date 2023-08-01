@@ -1,9 +1,25 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 	<update handle="styles"/>
+	<head>
+        <css src="Wubinworks_InjectHead::css/codemirror.css"/>
+		<css src="Wubinworks_InjectHead::css/solarized.css"/>
+		<css src="Wubinworks_InjectHead::css/highlightjs/dark.min.css"/>
+		<css src="Wubinworks_InjectHead::css/form/htmleditor.css"/>
+	</head>
 	<body>
 		<referenceContainer name="content">
 			<uiComponent name="wubinworks_injecthead_injections_form"/>
+			<!--<block class="Wubinworks\InjectHead\Block\Adminhtml\Form\HtmlEditor"
+				name="wubinworks_injecthead_block_adminhtml_form_htmleditor"
+				as="wubinworks_injecthead_block_adminhtml_form_htmleditor"
+				template="Wubinworks_InjectHead::form/htmleditor.phtml"/>-->
 		</referenceContainer>
 	</body>
 </page>

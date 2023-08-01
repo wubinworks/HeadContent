@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Wubinworks All rights reserved.
+ * Copyright © Wubinworks. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
@@ -9,7 +9,10 @@ namespace Wubinworks\InjectHead\Controller\Adminhtml\Injections;
 
 class NewAction extends \Wubinworks\InjectHead\Controller\Adminhtml\Injections
 {
-
+	/**
+	 * Result forward factory
+	 * @var \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+	 */
     protected $resultForwardFactory;
 
     /**
@@ -38,4 +41,3 @@ class NewAction extends \Wubinworks\InjectHead\Controller\Adminhtml\Injections
         return $resultForward->forward('edit');
     }
 }
-

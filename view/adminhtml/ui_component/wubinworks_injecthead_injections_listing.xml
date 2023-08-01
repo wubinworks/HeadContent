@@ -1,6 +1,13 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 	<argument name="data" xsi:type="array">
+		<item name="template" xsi:type="string">templates/listing/wubinworks-injections-grid</item>
 		<item name="js_config" xsi:type="array">
 			<item name="provider" xsi:type="string">wubinworks_injecthead_injections_listing.wubinworks_injecthead_injections_listing_data_source</item>
 		</item>
@@ -14,8 +21,9 @@
 			<button name="add">
 				<url path="*/*/new"/>
 				<class>primary</class>
-				<label translate="true">Add new Injections</label>
+				<label translate="true">Add New Rule</label>
 			</button>
+			<button name="cache_management" class="Wubinworks\InjectHead\Block\Adminhtml\Grid\CacheManagementButton"/>
 		</buttons>
 	</settings>
 	<dataSource name="wubinworks_injecthead_injections_listing_data_source" component="Magento_Ui/js/grid/provider">
@@ -25,8 +33,8 @@
 			</storageConfig>
 			<updateUrl path="mui/index/render"/>
 		</settings>
-		<aclResource>Wubinworks_InjectHead::Injections</aclResource>
-		<dataProvider name="wubinworks_injecthead_injections_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+		<aclResource>Wubinworks_InjectHead::injecthead_injections</aclResource>
+		<dataProvider name="wubinworks_injecthead_injections_listing_data_source" class="Wubinworks\InjectHead\Model\Injections\Grid\DataProvider">
 			<settings>
 				<requestFieldName>id</requestFieldName>
 				<primaryFieldName>injections_id</primaryFieldName>
@@ -35,14 +43,267 @@
 	</dataSource>
 	<listingToolbar name="listing_top">
 		<settings>
-			<sticky>true</sticky>
+			<sticky>false</sticky>
 		</settings>
 		<bookmark name="bookmarks"/>
 		<columnsControls name="columns_controls"/>
-		<filters name="listing_filters"/>
+		<filterSearch name="fulltext"/>
+		<filters name="listing_filters" component="Wubinworks_InjectHead/js/grid/filters/filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+			<filterSelect name="enabled" provider="${ $.parentName }"
+				component="Wubinworks_InjectHead/js/form/element/ui-select"
+				template="ui/grid/filters/elements/ui-select">
+				<!--<argument name="data" xsi:type="array">
+					<item name="config" xsi:type="array">
+						<item name="multiple" xsi:type="boolean">false</item>
+					</item>
+				</argument>-->
+                <settings>
+					<caption translate="true">Select...</caption>
+                    <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                    <label translate="true">Enabled</label>
+                    <dataScope>enabled</dataScope>
+                    <imports>
+                        <link name="visible">ns = ${ $.ns }, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+			<filterSelect name="match_mode" provider="${ $.parentName }"
+				component="Wubinworks_InjectHead/js/form/element/ui-select"
+				template="ui/grid/filters/elements/ui-select">
+				<!--<argument name="data" xsi:type="array">
+					<item name="config" xsi:type="array">
+						<item name="multiple" xsi:type="boolean">false</item>
+					</item>
+				</argument>-->
+                <settings>
+					<caption translate="true">Select...</caption>
+                    <options class="Wubinworks\InjectHead\Ui\Component\Listing\Column\MatchMode\MatchModeOptions"/>
+                    <label translate="true">Match Mode</label>
+                    <dataScope>match_mode</dataScope>
+                    <imports>
+                        <link name="visible">ns = ${ $.ns }, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+            <filterSelect name="store_ids" provider="${ $.parentName }"
+				component="Wubinworks_InjectHead/js/form/element/ui-select"
+				template="ui/grid/filters/elements/ui-select">
+                <settings>
+                    <!--<captionValue>0</captionValue>-->
+					<caption translate="true">Select...</caption>
+                    <options class="Wubinworks\InjectHead\Ui\Component\Listing\Column\StoreIds\StoreIdsOptions"/>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_ids</dataScope>
+                    <imports>
+						<!--<link name="visible">componentType = column, index = ${ $.index }:visible</link>-->
+                        <link name="visible">ns = ${ $.ns }, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+			<filterSelect name="store_ids_wubinworks_1" provider="${ $.parentName }"
+				component="Wubinworks_InjectHead/js/form/element/ui-select"
+				template="ui/grid/filters/elements/ui-select"
+				class="Wubinworks\InjectHead\Ui\Component\Filters\Type\SubsetSelect">
+                <settings>
+                    <!--<captionValue>0</captionValue>-->
+					<caption translate="true">Select...</caption>
+                    <options class="Wubinworks\InjectHead\Ui\Component\Listing\Column\StoreIds\StoreIdsOptions"/>
+                    <label translate="true">Store View(Partial Match)</label>
+                    <dataScope>store_ids_wubinworks_1</dataScope>
+                    <imports>
+						<!--<link name="visible">componentType = column, index = ${ $.index }:visible</link>-->
+                        <link name="visible">ns = ${ $.ns }, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+			<filterSelect name="customer_groups" provider="${ $.parentName }"
+				component="Wubinworks_InjectHead/js/form/element/ui-select"
+				template="ui/grid/filters/elements/ui-select">
+                <settings>
+					<caption translate="true">Select...</caption>
+                    <options class="Wubinworks\InjectHead\Model\Customer\Group\CustomerGroupsOptionsProvider"/>
+                    <label translate="true">Customer Groups</label>
+                    <dataScope>customer_groups</dataScope>
+                    <imports>
+                        <link name="visible">ns = ${ $.ns }, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+			<filterSelect name="customer_groups_wubinworks_2" provider="${ $.parentName }"
+				component="Wubinworks_InjectHead/js/form/element/ui-select"
+				template="ui/grid/filters/elements/ui-select"
+				class="Wubinworks\InjectHead\Ui\Component\Filters\Type\SubsetSelect">
+                <settings>
+					<caption translate="true">Select...</caption>
+                    <options class="Wubinworks\InjectHead\Model\Customer\Group\CustomerGroupsOptionsProvider"/>
+                    <label translate="true">Customer Groups(Partial Match)</label>
+                    <dataScope>customer_groups_wubinworks_2</dataScope>
+                    <imports>
+                        <link name="visible">ns = ${ $.ns }, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+			<filterRange name="start_datetime_wubinworks_filter_or_null"
+                         class="Wubinworks\InjectHead\Ui\Component\Filters\Type\DateTime"
+						 component="Wubinworks_InjectHead/js/grid/filters/range"
+                         provider="${ $.parentName }"
+                         template="ui/grid/filters/elements/group" sortOrder="1000">
+				<argument name="data" xsi:type="array">
+					<item name="config" xsi:type="array">
+						<item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+					</item>
+				</argument>
+                <settings>
+                    <rangeType>datetime</rangeType>
+                    <label translate="true">Start DateTime</label>
+                    <dataScope>start_datetime_wubinworks_filter_or_null</dataScope>
+                </settings>
+            </filterRange>
+			<!--<filterRange name="start_datetime" class="Magento\Ui\Component\Filters\Type\DateRange">
+				<argument name="data" xsi:type="array">
+					<item name="config" xsi:type="array">
+						<item name="sortOrder" xsi:type="number">999</item>
+						<item name="dataScope" xsi:type="string">start_datetime</item>
+						<item name="label" xsi:type="string" translate="true">Start DateTime</item>
+						<item name="childDefaults" xsi:type="array">
+							<item name="provider" xsi:type="string">wubinworks_injecthead_injections_listing.wubinworks_injecthead_injections_listing.listing_top.listing_filters</item>
+						</item>
+					</item>
+				</argument>
+				<filterDate name="from">
+					<argument name="data" xsi:type="array">
+						<item name="config" xsi:type="array">
+							<item name="dataScope" xsi:type="string">from</item>
+							<item name="label" xsi:type="string" translate="true">from</item>
+							<item name="placeholder" xsi:type="string" translate="true">From</item>
+							<item name="options" xsi:type="array">
+								<item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+								<item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+								<item name="showsTime" xsi:type="boolean">true</item>
+							</item>
+							<item name="outputDateFormat" xsi:type="string">yyyy-MM-dd HH:mm:ss</item>
+							<item name="inputDateFormat" xsi:type="string">yyyy-MM-dd HH:mm:ss</item>
+						</item>
+					</argument>
+				</filterDate>
+				<filterDate name="to">
+					<argument name="data" xsi:type="array">
+						<item name="config" xsi:type="array">
+							<item name="dataScope" xsi:type="string">to</item>
+							<item name="label" xsi:type="string" translate="true">to</item>
+							<item name="placeholder" xsi:type="string" translate="true">To</item>
+							<item name="options" xsi:type="array">
+								<item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+								<item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+								<item name="showsTime" xsi:type="boolean">true</item>
+							</item>
+						</item>
+					</argument>
+				</filterDate>
+			</filterRange>-->
+			<filterRange name="end_datetime_wubinworks_filter_or_null"
+                         class="Wubinworks\InjectHead\Ui\Component\Filters\Type\DateTime"
+						 component="Wubinworks_InjectHead/js/grid/filters/range"
+                         provider="${ $.parentName }"
+                         template="ui/grid/filters/elements/group" sortOrder="1010">
+				<argument name="data" xsi:type="array">
+					<item name="config" xsi:type="array">
+						<item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+					</item>
+				</argument>
+                <settings>
+                    <rangeType>datetime</rangeType>
+                    <label translate="true">End DateTime</label>
+                    <dataScope>end_datetime_wubinworks_filter_or_null</dataScope>
+                </settings>
+            </filterRange>
+			<filterRange name="update_at"
+                         class="Wubinworks\InjectHead\Ui\Component\Filters\Type\DateTime"
+						 component="Wubinworks_InjectHead/js/grid/filters/range"
+                         provider="${ $.parentName }"
+                         template="ui/grid/filters/elements/group" sortOrder="1100">
+				<argument name="data" xsi:type="array">
+					<item name="config" xsi:type="array">
+						<item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+					</item>
+				</argument>
+                <settings>
+                    <rangeType>datetime</rangeType>
+                    <label translate="true">Update At</label>
+                    <dataScope>update_at</dataScope>
+                </settings>
+            </filterRange>
+        </filters>
+		<!--<massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+            <action name="enabledisable">
+                <settings>
+                    <actions>
+						<action name="0">
+							<url path="*/*/massEnable">
+								<param name="enabled">0</param>
+							</url>
+							<type>disable</type>
+							<label translate="true">Disable</label>
+						</action>
+						<action name="1">
+							<url path="*/*/massEnable">
+								<param name="enabled">1</param>
+							</url>
+							<type>enable</type>
+							<label translate="true">Enable</label>
+						</action>
+					</actions>
+                    <type>enabledisable</type>
+                    <label translate="true">Enable/Disable</label>
+                </settings>
+            </action>
+            <action name="edit">
+                <settings>
+                    <callback>
+                        <target>editSelected</target>
+                        <provider>wubinworks_injecthead_injections_listing.wubinworks_injecthead_injections_listing.wubinworks_injecthead_injections_columns_editor</provider>
+                    </callback>
+                    <type>edit</type>
+                    <label translate="true">Edit</label>
+                </settings>
+            </action>
+        </massaction>-->
 		<paging name="listing_paging"/>
 	</listingToolbar>
 	<columns name="wubinworks_injecthead_injections_columns">
+		<argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="resizeConfig" xsi:type="array">
+                    <item name="enabled" xsi:type="boolean">true</item><!-- This is required configuration -->
+                </item>
+            </item>
+        </argument>
 		<settings>
 			<editorConfig>
 				<param name="selectProvider" xsi:type="string">wubinworks_injecthead_injections_listing.wubinworks_injecthead_injections_listing.wubinworks_injecthead_injections_columns.ids</param>
@@ -67,57 +328,203 @@
 		<selectionsColumn name="ids">
 			<settings>
 				<indexField>injections_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>55</resizeDefaultWidth>
 			</settings>
 		</selectionsColumn>
 		<column name="injections_id">
 			<settings>
-				<filter>text</filter>
+				<filter>textRange</filter>
 				<sorting>asc</sorting>
 				<label translate="true">ID</label>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>55</resizeDefaultWidth>
+			</settings>
+		</column>
+		<column name="name">
+			<argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sorting" xsi:type="boolean">false</item>
+					<item name="resizeConfig" xsi:type="array">
+						<item name="enabled" xsi:type="boolean">true</item>
+						<item name="component" xsi:type="string">Magento_Ui/js/grid/resize</item>
+						<item name="rootSelector" xsi:type="string">${ $.columnsProvider }:.admin__data-grid-wrap</item>
+						<item name="columnsProvider" xsi:type="string">${ $.name }</item>
+					</item>
+                </item>
+            </argument>
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Name</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>100</resizeDefaultWidth>
 			</settings>
 		</column>
 		<column name="enabled">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+				<item name="config" xsi:type="array">
+					<item name="sortOrder" xsi:type="number">10</item>
+					<!--<item name="filter" xsi:type="string">select</item>-->
+					<item name="label" translate="true" xsi:type="string">Enabled</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+					<item name="dataType" xsi:type="string">select</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">select</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">true</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>55</resizeDefaultWidth>
+			</settings>
+		</column>
+		<column name="store_ids" class="Wubinworks\InjectHead\Ui\Component\Listing\Column\StoreIds">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+				<!--<filter>text</filter>-->
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>100</resizeDefaultWidth>
+            </settings>
+        </column>
+		<column name="customer_groups" class="Wubinworks\InjectHead\Ui\Component\Listing\Column\CustomerGroups">
+            <settings>
+                <label translate="true">Customer Groups</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+				<!--<filter>text</filter>-->
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>100</resizeDefaultWidth>
+            </settings>
+        </column>
+		<column name="match_mode" component="Magento_Ui/js/grid/columns/select">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">select</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">true</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+            <settings>
+                <!--<filter>select</filter>-->
+                <options class="Wubinworks\InjectHead\Ui\Component\Listing\Column\MatchMode\MatchModeOptions"/>
+                <dataType>select</dataType>
+                <label translate="true">Match Mode</label>
+                <visible>false</visible>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>90</resizeDefaultWidth>
+            </settings>
+        </column>
+		<column name="uri_pattern">
+			<argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sorting" xsi:type="boolean">false</item>
+                </item>
+            </argument>
 			<settings>
 				<filter>text</filter>
-				<label translate="true">enabled</label>
+				<label translate="true">URI Pattern</label>
 				<editor>
 					<editorType>text</editorType>
 					<validation>
 						<rule name="required-entry" xsi:type="boolean">false</rule>
 					</validation>
 				</editor>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>100</resizeDefaultWidth>
 			</settings>
 		</column>
-		<actionsColumn name="actions" class="Wubinworks\InjectHead\Ui\Component\Listing\Column\InjectionsActions">
+		<column name="full_action_name">
+			<argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+					<item name="visible" xsi:type="boolean">false</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sorting" xsi:type="boolean">false</item>
+					<item name="resizeConfig" xsi:type="array">
+						<item name="enabled" xsi:type="boolean">true</item>
+						<item name="component" xsi:type="string">Magento_Ui/js/grid/resize</item>
+						<item name="rootSelector" xsi:type="string">${ $.columnsProvider }:.admin__data-grid-wrap</item>
+						<item name="columnsProvider" xsi:type="string">${ $.name }</item>
+					</item>
+                </item>
+            </argument>
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Full Action Name</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>100</resizeDefaultWidth>
+			</settings>
+		</column>
+		<column name="start_datetime" class="Magento\Ui\Component\Listing\Columns\Date"
+			component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <!--<filter>dateRange</filter>-->
+                <dataType>date</dataType>
+                <label translate="true">Start DateTime</label>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>90</resizeDefaultWidth>
+            </settings>
+        </column>
+		<column name="end_datetime" class="Magento\Ui\Component\Listing\Columns\Date"
+			component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <!--<filter>dateRange</filter>-->
+                <dataType>date</dataType>
+                <label translate="true">End DateTime</label>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>90</resizeDefaultWidth>
+            </settings>
+        </column>
+		<column name="content"  class="Wubinworks\InjectHead\Ui\Component\Listing\Column\Content">
+			<argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="sorting" xsi:type="boolean">false</item>
+                    <item name="label" xsi:type="string" translate="true">Content</item>
+					<item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                </item>
+            </argument>
+		</column>
+		<column name="update_at" class="Magento\Ui\Component\Listing\Columns\Date"
+			component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <!--<filter>dateRange</filter>-->
+                <dataType>date</dataType>
+                <label translate="true">Update At</label>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>90</resizeDefaultWidth>
+				<visible>false</visible>
+            </settings>
+        </column>
+		<actionsColumn name="actions" class="Wubinworks\InjectHead\Ui\Component\Listing\Column\ColumnActions">
 			<settings>
 				<indexField>injections_id</indexField>
 				<resizeEnabled>false</resizeEnabled>
-				<resizeDefaultWidth>107</resizeDefaultWidth>
+				<resizeDefaultWidth>80</resizeDefaultWidth>
 			</settings>
 		</actionsColumn>
-		<column name="uri_pattern">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">uri_pattern</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
-		<column name="content">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">content</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
 	</columns>
 </listing>

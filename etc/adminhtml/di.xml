@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Backend\Model\Menu\Director\Director">
+        <plugin name="wubinworks_injecthead_menu_director_plugin" type="Wubinworks\InjectHead\Plugin\MenuDirectorPlugin"/>
+    </type>
+	<type name="Magento\Framework\Notification\MessageList">
+    	<arguments>
+        	<argument name="messages" xsi:type="array">
+            	<item name="wubinworks_injecthead_magento_version_message" xsi:type="string">Wubinworks\InjectHead\Block\Adminhtml\Messages\MagentoVersionMessage</item>
+        	</argument>
+    	</arguments>
+	</type>
+	<virtualType name="Wubinworks\InjectHead\Model\Injections\Grid\DataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+			<argument name="reporting" xsi:type="object">
+				Wubinworks\InjectHead\Model\Injections\Grid\DataProvider\Reporting
+			</argument>
+        </arguments>
+    </virtualType>
+	<virtualType name="Wubinworks\InjectHead\Model\Injections\Grid\DataProvider\Reporting" type="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+        <arguments>
+			<argument name="filterPool" xsi:type="object">
+				Wubinworks\InjectHead\Model\Injections\Grid\DataProvider\FilterPool
+			</argument>
+        </arguments>
+    </virtualType>
+	<virtualType name="Wubinworks\InjectHead\Model\Injections\Grid\DataProvider\FilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Wubinworks\InjectHead\Model\Injections\Grid\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+	<type name="Wubinworks\InjectHead\Model\Injections\Grid\DataProvider\RegularFilter">
+    	<arguments>
+        	<argument name="filterProcessorNamespace" xsi:type="string">
+				Wubinworks\InjectHead\Model\Api\SearchCriteria\CollectionProcessor\FilterProcessor
+        	</argument>
+    	</arguments>
+	</type>
+</config>

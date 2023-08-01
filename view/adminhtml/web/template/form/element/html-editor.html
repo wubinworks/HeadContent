@@ -1,0 +1,24 @@
+<!--
+/**
+ * classes are set in ui_component xml
+ *
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<input type="hidden"
+    data-bind="
+        event: {change: userChanges},
+        value: value,
+        hasFocus: focused,
+        valueUpdate: valueUpdate,
+        attr: {
+            name: inputName,
+            placeholder: placeholder,
+            'aria-describedby': noticeId,
+            id: uid,
+            disabled: disabled,
+            class: 'admin__control-text ' + $data.classes,
+			style: $data.style
+    }"
+>

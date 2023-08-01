@@ -1,0 +1,23 @@
+<!--
+/**
+ * Add validation rule support
+ *
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<input class="admin__control-text wubinworks-validatable wubinworks-validate-ascii" type="text"
+	data-validate="{required: true, 'wubinworks-validate-ascii': true}"
+    data-bind="
+        event: {change: userChanges},
+        value: value,
+        hasFocus: focused,
+        valueUpdate: valueUpdate,
+        attr: {
+            name: inputName,
+            placeholder: placeholder,
+            'aria-describedby': noticeId,
+            id: uid,
+            disabled: disabled,
+            maxlength: 255
+    }"/>

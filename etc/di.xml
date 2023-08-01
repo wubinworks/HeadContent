@@ -1,6 +1,26 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 	<preference for="Wubinworks\InjectHead\Api\InjectionsRepositoryInterface" type="Wubinworks\InjectHead\Model\InjectionsRepository"/>
+	<type name="Wubinworks\InjectHead\Api\InjectionsRepositoryInterface">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Wubinworks\InjectHead\Model\Api\SearchCriteria\InjectionsCollectionProcessor</argument>
+        </arguments>
+    </type>
+	<virtualType name="Wubinworks\InjectHead\Model\Api\SearchCriteria\InjectionsCollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Wubinworks\InjectHead\Api\SearchCriteria\CollectionProcessor\InjectionsFilterProcessor</item>
+                <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
 	<preference for="Wubinworks\InjectHead\Api\Data\InjectionsInterface" type="Wubinworks\InjectHead\Model\Injections"/>
 	<preference for="Wubinworks\InjectHead\Api\Data\InjectionsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<virtualType name="Wubinworks\InjectHead\Model\ResourceModel\Injections\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">

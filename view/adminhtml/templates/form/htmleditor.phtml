@@ -1,0 +1,54 @@
+<?php
+/**
+ * @var $block \Wubinworks\InjectHead\Block\Adminhtml\Form\HtmlEditor
+ *
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class="more-help">
+	<div class="label">
+		&nbsp;
+	</div>
+	<div class="value">
+		<a class="wubinworks-external-link" href="<?= $block->helper->getProjectUrl('code_editor') ?>" target="_blank" rel="noopener noreferrer nofollow"><?= __('More help') ?></a>
+	</div>
+</div>
+<div class="example-code">
+	<div class="label">
+		<h4><?= __('Content Example') ?></h4>
+	</div>
+	<div class="code">
+		<pre><code class="language-html">&lt;!--
+<?php
+echo __('@Only script, style, link and meta tag are recognized') . "\n";
+echo __('@Comments will not be injected') . "\n";
+echo __('@Your code must be ERROR-FREE') . "\n";
+?>
+--&gt;
+&lt;comment&gt;<?= __('You can also comment like this') ?>&lt;/comment&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    console.log('wubinworks');
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;sample.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;my-style.css&quot;&gt;
+&lt;style type=&quot;text/css&quot; media=&quot;print&quot;&gt;
+	h1{
+		color: green;
+		font-size: 20px;
+	}
+&lt;/style&gt;</code></pre>
+	</div>
+</div>
+<script>
+	require([
+        'jquery',
+		'uiRegistry',
+		'Magento_Ui/js/lib/view/utils/dom-observer',
+        'hljs'
+    ], function ($, uiRegistry, $do, hljs) {
+		$do.get('.example-code', function(elem){
+            hljs.highlightAll();
+        });
+	});
+</script>

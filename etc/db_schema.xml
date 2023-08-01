@@ -1,12 +1,26 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Wubinworks. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
 	<table name="wubinworks_injecthead_injections" resource="default" engine="innodb" comment="wubinworks_injecthead_injections Table">
-		<column xsi:type="int" name="injections_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<column xsi:type="smallint" name="injections_id" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+		<column name="enabled" nullable="false" xsi:type="smallint" comment="Enabled" default="1" identity="false" unsigned="true"/>
+		<column name="store_ids" nullable="true" xsi:type="varchar" length="255" comment="Store Ids"/>
+		<column name="customer_groups" nullable="true" xsi:type="varchar" length="255" comment="Customer Groups"/>
+		<column name="match_mode" nullable="false" xsi:type="smallint" comment="Match Mode" default="1" identity="false" unsigned="true"/>
+		<column name="uri_pattern" nullable="true" xsi:type="varchar" length="255" comment="Uri Pattern"/>
+		<column name="full_action_name" nullable="true" xsi:type="varchar" length="255" comment="Full Action Name"/>
+		<column xsi:type="datetime" name="start_datetime" on_update="false" nullable="true" comment="Start DateTime"/>
+		<column xsi:type="datetime" name="end_datetime" on_update="false" nullable="true" comment="End DateTime"/>
+		<column xsi:type="mediumtext" name="content" nullable="true" comment="Content"/>
+		<column xsi:type="datetime" name="update_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Update At"/>
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="injections_id"/>
 		</constraint>
-		<column name="enabled" nullable="false" xsi:type="smallint" comment="Enabled" default="1" identity="false" unsigned="true"/>
-		<column name="uri_pattern" nullable="true" xsi:type="text" comment="Uri Pattern"/>
-		<column name="content" nullable="true" xsi:type="mediumtext" comment="Content"/>
 	</table>
 </schema>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © Wubinworks All rights reserved.
+ * Copyright © Wubinworks. All rights reserved.
  * See COPYING.txt for license details.
  */
 declare(strict_types=1);
@@ -9,7 +9,6 @@ namespace Wubinworks\InjectHead\Api\Data;
 
 interface InjectionsSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
 {
-
     /**
      * Get Injections list.
      * @return \Wubinworks\InjectHead\Api\Data\InjectionsInterface[]
@@ -23,4 +22,3 @@ interface InjectionsSearchResultsInterface extends \Magento\Framework\Api\Search
      */
     public function setItems(array $items);
 }
-
